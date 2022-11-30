@@ -1,0 +1,33 @@
+composer é utilizado para gerenciar os pacotes dentro de um projeto, no caso podemos utilizar ele para atualizar, instalar, remover e etc determinados pacotes, nesse projeto em questão utilizamos dois instalando eles com o seguinte comando 
+
+
+composer require "nome do pacote"
+
+para encontrar pacotes, você pode acessar o site oficial dos pacotes https://packagist.org
+
+
+aprendemos que conseguios utilizar classes e funções com apenas um autoload utilizando a seguinte estrutura dentro do composer.json 
+    "autoload": {
+        "files": [
+            "src/functions.php"  // aqui para funções soltas, coisa que eu fazia antigamente
+        ],
+        "classmap": [
+        "src/Teste.php"          // aqui para importar classes que não utilizam o padrão psr-4
+        ],
+        "psr-4": {
+            "Pantojavii\\BuscadorDeCursos\\": "src/"    //aqui para estrutura psr-4   pmde a primeira parte é o namespace e a segunda o diretório das classes.
+        }
+    }
+
+
+como definir atalhos para comandos no composer é só escrever dentro no composer.json 
+ "scripts": {
+        "cs": "phpcs --standard=PSR12 src\\Buscador.php" // e aqui fica os comandos que você quer juntamente ao código original.
+    }
+
+
+para colocar vários comandos dentro de um único comando basta você usar a seguinte sintaxe 
+        "check": [
+            "@cs",
+            "@phan"   onde o check é o comando que vai chamar os outros, e os @comandos, fazem referencia aos comandos definidos anteriormente.
+        ]
